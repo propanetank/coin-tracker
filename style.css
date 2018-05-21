@@ -13,6 +13,11 @@
 	margin-bottom: 1.3em;
 }
 
+.btn-group {
+	margin-left: 2em;
+	margin-top: 0.6em;
+}
+
 a {
 	color: black;
 }

@@ -50,6 +50,11 @@
 					<h2><a href="https://coingecko.com/en/coins/litecoin" target="_blank">Litecoin (LTC)</a></h2>
 					<p>Price: <span class="price" id="ltc"></span></p>
 					<div class="graph" id="ltcgraph"></div>
+					<!--<div class="btn-group">
+						<button type="button" class="btn btn-primary" id="ltc1" onclick="selectLTC(1)">1 Day</button>
+						<button type="button" class="btn btn-primary" id="ltc14">14 Days</button>
+						<button type="button" class="btn btn-primary" id="ltc30">30 Days</button>
+					</div>-->
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,4 @@
 $(function() {
-	var data;
-	var options;
 	$.getJSON("get.php?data=btc", function(json) {
 		data = json;
 		var time = new Date().getTime();
@@ -56,13 +54,13 @@ $(function() {
 		});
 	});
 	$.getJSON("get.php?data=eth", function(json) {
-		var ethdata = json;
+		var data = json;
 		var time = new Date().getTime();
-		var price = ethdata[ethdata.length-1][1];
+		var price = data[data.length-1][1];
 		price = price.toFixed(2);
 		document.getElementById("eth").innerHTML = "$" + price;
 		
-		$.plot("#ethgraph", [{ label: "Price", data: ethdata }], { 
+		$.plot("#ethgraph", [{ label: "Price", data: data }], { 
 			points: {
 				show: true,
 				symbol: "circle"
@@ -110,13 +108,13 @@ $(function() {
 		});
 	});
 	$.getJSON("get.php?data=xrp", function(json) {
-		var xrpdata = json;
+		var data = json;
 		var time = new Date().getTime();
-		var price = xrpdata[xrpdata.length-1][1];
-		price = price.toFixed(2);
+		var price = data[data.length-1][1];
+		price = price.toFixed(3);
 		document.getElementById("xrp").innerHTML = "$" + price;
 		
-		$.plot("#xrpgraph", [{ label: "Price", data: xrpdata }], { 
+		$.plot("#xrpgraph", [{ label: "Price", data: data }], { 
 			points: {
 				show: true,
 				symbol: "circle"
@@ -154,7 +152,7 @@ $(function() {
 			if(item) {
 				var d = new Date(item.datapoint[0]);
 				var x = d.toLocaleString(),
-					y = item.datapoint[1].toFixed(2);
+					y = item.datapoint[1].toFixed(3);
 				$("#tooltip").html("$" + y + " on " + x)
 					.css({top: item.pageY+5, left: item.pageX+5})
 					.fadeIn(200);
@@ -164,13 +162,13 @@ $(function() {
 		});
 	});
 	$.getJSON("get.php?data=xmr", function(json) {
-		var xmrdata = json;
+		var data = json;
 		var time = new Date().getTime();
-		var price = xmrdata[xmrdata.length-1][1];
+		var price = data[data.length-1][1];
 		price = price.toFixed(2);
 		document.getElementById("xmr").innerHTML = "$" + price;
 		
-		$.plot("#xmrgraph", [{ label: "Price", data: xmrdata }], { 
+		$.plot("#xmrgraph", [{ label: "Price", data: data }], { 
 			points: {
 				show: true,
 				symbol: "circle"
@@ -218,13 +216,13 @@ $(function() {
 		});
 	});
 	$.getJSON("get.php?data=lnd", function(json) {
-		var lnddata = json;
+		var data = json;
 		var time = new Date().getTime();
-		var price = lnddata[lnddata.length-1][1];
-		price = price.toFixed(4);
+		var price = data[data.length-1][1];
+		price = price.toFixed(5);
 		document.getElementById("lnd").innerHTML = "$" + price;
 		
-		$.plot("#lndgraph", [{ label: "Price", data: lnddata }], { 
+		$.plot("#lndgraph", [{ label: "Price", data: data }], { 
 			points: {
 				show: true,
 				symbol: "circle"
@@ -262,7 +260,7 @@ $(function() {
 			if(item) {
 				var d = new Date(item.datapoint[0]);
 				var x = d.toLocaleString(),
-					y = item.datapoint[1].toFixed(4);
+					y = item.datapoint[1].toFixed(5);
 				$("#tooltip").html("$" + y + " on " + x)
 					.css({top: item.pageY+5, left: item.pageX+5})
 					.fadeIn(200);
@@ -272,13 +270,22 @@ $(function() {
 		});
 	});
 	$.getJSON("get.php?data=ltc", function(json) {
-		var ltcdata = json;
+		var data = json;
 		var time = new Date().getTime();
-		var price = ltcdata[ltcdata.length-1][1];
+		var seconds;
+		/*switch(days) {
+			case 14:
+				seconds = 86400000;
+			case 30:
+				seconds = 2592000000;
+			default:
+				seconds = 86400000;
+		}*/
+		var price = data[data.length-1][1];
 		price = price.toFixed(2);
 		document.getElementById("ltc").innerHTML = "$" + price;
 		
-		$.plot("#ltcgraph", [{ label: "Price", data: ltcdata }], { 
+		$.plot("#ltcgraph", [{ label: "Price", data: data }], { 
 			points: {
 				show: true,
 				symbol: "circle"
