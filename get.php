@@ -1,7 +1,7 @@
 <?php
 
 $URL = "https://api.coingecko.com/api/v3/coins/";
-$data = "/market_chart?vs_currency=usd&days=30";
+$data = "/market_chart?vs_currency=usd&days=" . $_GET["days"];
 
 // Get current time and date
 	$time = time();

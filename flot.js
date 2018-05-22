@@ -272,15 +272,6 @@ $(function() {
 	$.getJSON("get.php?data=ltc", function(json) {
 		var data = json;
 		var time = new Date().getTime();
-		var seconds;
-		/*switch(days) {
-			case 14:
-				seconds = 86400000;
-			case 30:
-				seconds = 2592000000;
-			default:
-				seconds = 86400000;
-		}*/
 		var price = data[data.length-1][1];
 		price = price.toFixed(2);
 		document.getElementById("ltc").innerHTML = "$" + price;
@@ -333,3 +324,56 @@ $(function() {
 		});
 	});
 });
+
+function selectRange(coin, days) {
+	$.getJSON("get.php?data=" + coin + "&days=" + days, function(json) {
+		data = json;
+		var time = new Date().getTime();
+		var timeScale, increment;
+		switch(days) {
+			case 14:
+				timeScale = time - 1209600000;
+				increment = "day";
+				break;
+			case 30:
+				timeScale = time - 2592000000;
+				increment = "day";
+				break;
+			case "max":
+				timeScale = time - data[0][0];
+				increment = "month";
+				break;
+			default:
+				timeScale = time - 86400000;
+				increment = "hour";
+				break;
+		}
+
+		$.plot("#" + coin + "graph", [{ label: "Price", data: data }], {
+			points: {
+				show: true,
+				symbol: "circle"
+			},
+			lines: {
+				show: true
+			},
+			crosshair: {
+				mode: "x"
+			},
+			grid: {
+				hoverable: true,
+				autoHighlight: false
+			},
+			xaxis: {
+				mode: "time",
+				minTickSize: [1, increment],
+				min: timeScale,
+				twelveHourClock: true,
+				timezone: "browser"
+			},
+			legend: {
+				show: false
+			}
+		});
+	});
+}
